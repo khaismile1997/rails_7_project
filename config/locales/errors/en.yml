@@ -1,0 +1,8 @@
+en:
+  errors:
+    brand:
+      not_found: "Brand is not exists"
+  api_error:
+    unauthorized:
+      reason: INVALID_PAYLOAD
+      message: Not authorized

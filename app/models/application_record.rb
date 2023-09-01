@@ -1,3 +1,8 @@
 class ApplicationRecord < ActiveRecord::Base
-  primary_abstract_class
+  include Hashid::Rails
+  self.abstract_class = true
+
+  scope :by_hashids, (lambda do |hashids|
+    where(id: decode_id(hashids).compact)
+  end)
 end
