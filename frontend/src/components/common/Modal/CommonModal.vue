@@ -4,7 +4,7 @@
     class="dialog"
     width="800"
   >
-    <slot>
+    <slot name="body">
       <div class="white">
         Body content
       </div>
@@ -15,6 +15,19 @@
 <script setup>
 import {ref} from "vue";
 const isShow = ref(false)
+
+const show = () => {
+  isShow.value = true
+}
+
+const hide = () => {
+  isShow.value = false
+}
+
+defineExpose({
+  show, hide
+})
+
 </script>
 <style scoped>
 
