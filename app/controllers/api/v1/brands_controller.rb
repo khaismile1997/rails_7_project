@@ -31,7 +31,7 @@ class Api::V1::BrandsController < Api::V1::BaseController
 
   def brand_params
     params.require(:brand).permit(
-      :name, :website_url, :founded_year, :primary_contact, :featured_collections,
+      :name, :logo, :website_url, :founded_year, :primary_contact,
       social_media_links: [:platform, :link]
     )
   end

@@ -22,11 +22,11 @@ social_media_platforms = ['Facebook', 'Instagram', 'Twitter']
 10.times do
   brand = Brand.create(
     name: Faker::Company.name,
+    logo: Faker::LoremFlickr.image(size: "50x50"),
     website_url: Faker::Internet.url,
     founded_year: rand(1900..2023),
     primary_contact: Faker::Name.name,
-    social_media_links: Array.new(3) { { platform: social_media_platforms.sample, link: Faker::Internet.url } },
-    featured_collections: Faker::Lorem.words(number: 3).join(', ')
+    social_media_links: Array.new(3) { { platform: social_media_platforms.sample, link: Faker::Internet.url } }
   )
   puts "Created brand: #{brand.name}"
 end
