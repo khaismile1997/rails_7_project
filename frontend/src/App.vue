@@ -1,17 +1,12 @@
 <template>
   <div id="app">
-    <SessionManager />
+    <router-view />
   </div>
 </template>
 
 <script>
-import SessionManager from "./components/SessionManager.vue";
-
 export default {
-  name: "App",
-  components: {
-    SessionManager,
-  },
+  name: "App"
 };
 </script>
 
