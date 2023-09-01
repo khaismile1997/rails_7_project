@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <h1 class="sm-title">Vue Session Manager</h1>
-    <v-btn>Phong</v-btn>
     <div class="sm-card">
       <div v-if="isLoggedIn">
         <button @click="logoutUser" class="logout-button">Logout</button>
