@@ -59,3 +59,7 @@ gem "rack-cors", "~> 2.0"
 gem 'hashid-rails'
 gem 'active_model_serializers'
 gem 'money-rails'
+gem 'dotenv-rails'
+gem 'config'
+gem 'redis', '>= 3.3', '< 5'
+gem 'psych', '< 4.0.0'

@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:14.9
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_HOST_AUTH_METHOD: trust
+  web:
+    build: .
+    command: bundle exec rails s -p 3001 -b "0.0.0.0"
+    env_file:
+      - .env
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+      - REDIS_URL=${REDIS_URL}
+      - DATABASE_URL=postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@db:5432/${DATABASE_NAME}
+    volumes:
+      - .:/rails_7_project
+      - bundle:/bundle
+    ports:
+      - "3001:3001"
+    links:
+      - db
+      - redis
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+  redis:
+    image: redis:5
+    ports:
+      - 6379:6379
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+volumes:
+  db_data:
+    driver: local
+  bundle:
+    driver: local
+  redis-data:
+    driver: local
