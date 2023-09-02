@@ -4,11 +4,11 @@
     class="dialog"
     width="800"
   >
-    <slot name="body">
-      <div class="white">
-        Body content
-      </div>
-    </slot>
+    <v-card
+      width="800"
+    >
+      <slot name="body" />
+    </v-card>
   </v-dialog>
 </template>
 
@@ -29,6 +29,8 @@ defineExpose({
 })
 
 </script>
-<style scoped>
-
+<style lang="scss" scoped>
+:deep(.v-card){
+  padding: 40px;
+}
 </style>

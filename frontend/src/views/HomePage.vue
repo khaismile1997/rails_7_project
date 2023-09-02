@@ -1,5 +1,6 @@
 <template>
   <HeaderPage
+    @sign-up="signUp"
     @login="login"
   />
   <div class="branch-containers w-100">
@@ -15,22 +16,34 @@
     <Brand />
     <Brand />
   </div>
-  <LoginModal ref="loginRef" />
+  <LoginModal
+    ref="loginModalRef"
+    @sign-up="signUp"
+  />
+  <SignUpModal
+    ref="singUpModalRef"
+    @login="login"
+  />
 </template>
 <script setup>
 import Brand from "@/components/Brand/Brand.vue";
-import LoginModal from "@/components/Login/LoginModal.vue";
 import HeaderPage from "@/components/Header/HeaderPage.vue";
 import { onMounted, ref} from "vue";
 import store from "@/store";
-const loginRef = ref<typeof LoginModal>(null)
-
+import SignUpModal from "@/components/Login/SignUpModal.vue";
+import LoginModal from "@/components/Login/LoginModal.vue";
+const loginModalRef = ref(null)
+const singUpModalRef = ref(null)
 onMounted(() => {
   //check session
   checkSession()
 })
 const login = () => {
-  loginRef.value.show()
+  loginModalRef.value.show()
+}
+//sign up
+const signUp = () => {
+  singUpModalRef.value.show()
 }
 
 const checkSession = () => {

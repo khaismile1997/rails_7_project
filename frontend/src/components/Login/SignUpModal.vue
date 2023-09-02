@@ -5,7 +5,7 @@
       <div class="modal-container">
         <div class="title">
           <div>
-            Login
+            Create Sign Up
           </div>
         </div>
         <div class="style-text email">
@@ -20,13 +20,13 @@
           <v-btn
             variant="outlined"
           >
-            Login
+            Sign Up
           </v-btn>
           <v-btn
             class="ml-2"
-            @click="signUp"
+            @click="login"
           >
-            Sign up
+            Login
           </v-btn>
         </div>
       </div>
@@ -38,7 +38,7 @@
 import CommonModal from "@/components/common/Modal/CommonModal.vue";
 import {ref} from "vue";
 const modal = ref()
-const emits = defineEmits(['signUp'])
+const emits = defineEmits(['login'])
 
 const show  = () => {
   modal.value.show()
@@ -47,9 +47,8 @@ const show  = () => {
 const hide = () => {
   modal.value.hide()
 }
-
-const signUp  = () => {
-  emits('signUp')
+const login = () => {
+  emits('Login')
   hide()
 }
 
