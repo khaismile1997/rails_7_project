@@ -1,4 +1,4 @@
-class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
+class Api::V1::Auth::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   private
@@ -14,6 +14,6 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def register_failed
-    render json: { message: "Something went wrong." }, status: :unprocessable_entity
+    raise ApiError::BadRequest, resource.errors.full_messages.join("\n")
   end
 end

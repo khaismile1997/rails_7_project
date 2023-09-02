@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+class Client < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   validates :password, confirmation: true
+  validates :payout_rate, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   validate :email_unique_across_users_and_clients
 
@@ -15,7 +16,7 @@ class User < ApplicationRecord
 
   def email_unique_across_users_and_clients
     return if email.blank?
-    if User.where(email: email).where.not(id: id).exists? || Client.where(email: email).exists?
+    if Client.where(email: email).where.not(id: id).exists? || User.where(email: email).exists?
       errors.add(:email, 'has already been taken')
     end
   end
