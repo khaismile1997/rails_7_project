@@ -2,6 +2,8 @@ en:
   errors:
     brand:
       not_found: "Brand is not exists"
+    product:
+      not_found: "Product is not exists"
   api_error:
     unauthorized:
       reason: INVALID_PAYLOAD

@@ -7,18 +7,16 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
-# Clear existing users
+# Clear existing data
 User.destroy_all
+Brand.destroy_all
+Product.destroy_all
 
 User.create(email: 'admin@gmail.com', password: 'password', password_confirmation: 'password')
-
-# Clear existing brands
-Brand.destroy_all
 
 # Array of sample social media platforms
 social_media_platforms = ['Facebook', 'Instagram', 'Twitter']
 
-# Seed 10 random brands
 10.times do
   brand = Brand.create(
     name: Faker::Company.name,
@@ -29,4 +27,20 @@ social_media_platforms = ['Facebook', 'Instagram', 'Twitter']
     social_media_links: Array.new(3) { { platform: social_media_platforms.sample, link: Faker::Internet.url } }
   )
   puts "Created brand: #{brand.name}"
+end
+
+10.times do
+  product = Product.create(
+    name: Faker::Commerce.product_name,
+    description: Faker::Lorem.paragraph,
+    material: Faker::Commerce.material,
+    size_options: Faker::Lorem.words(number: 3).join(', '),
+    color_options: Faker::Commerce.color,
+    care_instructions: Faker::Lorem.sentence,
+    price_cents: rand(1000..10000),
+    price_currency: 'USD',
+    brand: Brand.all.sample
+  )
+
+  puts "Created product: #{product.name}"
 end

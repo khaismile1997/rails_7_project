@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/members', to: 'members#show'
 
-      resources :brands, only: [:index, :create, :update, :destroy]
+      resources :brands, only: [:index, :create, :update, :destroy] do
+        resources :products
+      end
     end
   end
 

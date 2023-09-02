@@ -5,4 +5,8 @@ class Brand < ApplicationRecord
   validates :founded_year, numericality: { only_integer: true, greater_than: 0 }
 
   serialize :social_media_links, JSON
+
+  has_many :products, dependent: :destroy
+
+  enum state: { active: 0, inactive: 1 }
 end
