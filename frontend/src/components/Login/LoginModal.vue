@@ -18,6 +18,7 @@
         <v-text-field label="Password" />
         <div class="sign-up-btn">
           <v-btn
+            class="bg-primary"
             variant="outlined"
           >
             Login

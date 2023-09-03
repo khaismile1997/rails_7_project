@@ -1,5 +1,5 @@
 <template>
-  <div class="branch d-flex flex-column justify-content-center align-content-center">
+  <div class="brand d-flex flex-column justify-content-center align-content-center">
     <div class="logo">
       <img
         class="w-100 h-100"
@@ -12,12 +12,13 @@
   </div>
 </template>
 <style lang="scss" scoped>
-.branch{
-  margin: 30px 30px;
+.brand{
+  margin: 30px 60px;
   width: 100px;
   height: 100px;
   border-radius: 8px;
   padding: 5px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  cursor: pointer;
 }
 </style>

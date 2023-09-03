@@ -8,15 +8,17 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "@mdi/font": "^7.2.96",
     "axios": "^1.5.0",
+    "bootstrap": "^5.3.1",
     "core-js": "^3.8.3",
+    "material-design-icons-iconfont": "^6.7.0",
     "sass": "^1.66.1",
     "sass-loader": "^13.3.2",
     "vue": "^3.2.13",
-    "vuex": "^4.0.0",
-    "bootstrap": "^5.3.1",
     "vue-router": "^4.0.13",
-    "vuetify": "^3.3.15"
+    "vuetify": "^3.3.15",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",

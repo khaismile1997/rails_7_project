@@ -1,8 +1,4 @@
 <template>
-  <HeaderPage
-    @sign-up="signUp"
-    @login="login"
-  />
   <div class="branch-containers w-100">
     <Brand />
     <Brand />
@@ -32,6 +28,7 @@ import { onMounted, ref} from "vue";
 import store from "@/store";
 import SignUpModal from "@/components/Login/SignUpModal.vue";
 import LoginModal from "@/components/Login/LoginModal.vue";
+import SideBar from "@/components/common/SideBar/SideBar.vue";
 const loginModalRef = ref(null)
 const singUpModalRef = ref(null)
 onMounted(() => {
