@@ -4,6 +4,8 @@ en:
       not_found: "Brand is not exists"
     product:
       not_found: "Product is not exists"
+    client:
+      not_found: "Client is not exists"
   api_error:
     unauthorized:
       reason: INVALID_PAYLOAD

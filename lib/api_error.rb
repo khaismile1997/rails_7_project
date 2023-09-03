@@ -23,4 +23,7 @@ module ApiError
 
   class Unauthorized < ApiError::Base
   end
+
+  class BadRequest < StandardError
+  end
 end

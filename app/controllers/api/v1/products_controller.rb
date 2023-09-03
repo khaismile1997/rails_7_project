@@ -1,5 +1,5 @@
 class Api::V1::ProductsController < Api::V1::BaseController
-  before_action :set_brand
+  before_action :set_brand, :authenticate_user_or_client!
   before_action :set_product, only: [:show, :update, :destroy]
 
   def index

@@ -10,6 +10,9 @@ module ErrorRescuable
 
     rescue_from ApiError::Unauthorized,
                 with: :handle_401
+
+    rescue_from ApiError::BadRequest,
+                with: :handle_400_with_message
   end
 
   private
@@ -26,5 +29,9 @@ module ErrorRescuable
 
   def handle_401(exception)
     render json: {error: {reason: exception.reason, message: exception.message}}, status: :unauthorized
+  end
+
+  def handle_400_with_message(exception)
+    render json: {error: {reason: "INVALID_STATUS", message: exception.message}}, status: :bad_request
   end
 end
