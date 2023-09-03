@@ -11,15 +11,22 @@
         <div class="style-text email">
           Email
         </div>
-        <v-text-field label="Email" />
+        <v-text-field
+          v-model="data.email"
+          label="Email"
+        />
         <div class="style-text password">
           Password
         </div>
-        <v-text-field label="Password" />
+        <v-text-field
+          v-model="data.password"
+          label="Password"
+        />
         <div class="sign-up-btn">
           <v-btn
             class="bg-primary"
             variant="outlined"
+            @click.prevent="login"
           >
             Login
           </v-btn>
@@ -37,10 +44,13 @@
 
 <script setup>
 import CommonModal from "@/components/common/Modal/CommonModal.vue";
-import {ref} from "vue";
+import {reactive, ref} from "vue";
 const modal = ref()
 const emits = defineEmits(['signUp'])
-
+const data = reactive({
+  password: '',
+  email: ''
+})
 const show  = () => {
   modal.value.show()
 }
@@ -49,6 +59,9 @@ const hide = () => {
   modal.value.hide()
 }
 
+const login = () => {
+  this.registerUser(data);
+}
 const signUp  = () => {
   emits('signUp')
   hide()

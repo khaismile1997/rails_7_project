@@ -12,36 +12,15 @@
     <Brand />
     <Brand />
   </div>
-  <LoginModal
-    ref="loginModalRef"
-    @sign-up="signUp"
-  />
-  <SignUpModal
-    ref="singUpModalRef"
-    @login="login"
-  />
 </template>
 <script setup>
 import Brand from "@/components/Brand/Brand.vue";
-import HeaderPage from "@/components/Header/HeaderPage.vue";
-import { onMounted, ref} from "vue";
+import { onMounted} from "vue";
 import store from "@/store";
-import SignUpModal from "@/components/Login/SignUpModal.vue";
-import LoginModal from "@/components/Login/LoginModal.vue";
-import SideBar from "@/components/common/SideBar/SideBar.vue";
-const loginModalRef = ref(null)
-const singUpModalRef = ref(null)
+
 onMounted(() => {
-  //check session
   checkSession()
 })
-const login = () => {
-  loginModalRef.value.show()
-}
-//sign up
-const signUp = () => {
-  singUpModalRef.value.show()
-}
 
 const checkSession = () => {
   let localAuthToken = localStorage.auth_token;

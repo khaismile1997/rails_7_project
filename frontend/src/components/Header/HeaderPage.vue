@@ -20,21 +20,32 @@
         Sign up
       </v-btn>
     </div>
+    <LoginModal
+      ref="loginModalRef"
+      @sign-up="signUp"
+    />
+    <SignUpModal
+      ref="singUpModalRef"
+      @login="login"
+    />
   </div>
 </template>
 <script setup>
 import SideBar from "@/components/common/SideBar/SideBar.vue";
 import UserAvatar from "@/components/common/Avatar/UserAvatar.vue";
-import {ref} from "vue";
-const isLogged = ref(true)
-
-const emits = defineEmits(['login', 'signUp'])
+import {inject, ref} from "vue";
+import SignUpModal from "@/components/Login/SignUpModal.vue";
+import LoginModal from "@/components/Login/LoginModal.vue";
+const emitter = inject('emitter');
+const isLogged = ref(false)
+const loginModalRef = ref(null)
+const singUpModalRef = ref(null)
 const login = () => {
-  emits('login')
+  loginModalRef.value.show()
 }
-
+//sign up
 const signUp = () => {
-  emits('signUp')
+  singUpModalRef.value.show()
 }
 
 </script>
