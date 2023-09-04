@@ -2,8 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '@/views/HomePage.vue'
 import About from "@/views/About.vue";
-import Brands from "@/views/Brands.vue";
-import Products from "@/views/Products.vue";
+import Products from "@/views/ProductManagement.vue";
+import ClientManagement from "@/views/ClientManagement.vue";
+import BrandManagement from "@/views/BrandManagement.vue";
+import ProductManagement from "@/views/ProductManagement.vue";
 const routes = [
   {
     path: '/',
@@ -11,7 +13,7 @@ const routes = [
   },
   {
     path: '/brands',
-    component: Brands
+    component: BrandManagement
   },
   {
     path: '/brand/:id',
@@ -19,10 +21,18 @@ const routes = [
   },
   {
     path: '/products',
-    component: Products
+    component: ProductManagement
   },
   {
     path: '/product/:id',
+    component: About
+  },
+  {
+    path: '/clients',
+    component:ClientManagement
+  },
+  {
+    path: '/client/:id',
     component: About
   },
 ]

@@ -55,7 +55,7 @@
             color="blue-lighten-2"
           />
           <router-link
-            to="/brands"
+            to="/clients"
             @click="() => hideSideBar()"
           >
             Client Management

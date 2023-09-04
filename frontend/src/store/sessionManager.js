@@ -21,7 +21,7 @@ export const useSessionStore = defineStore('sessionManager', () => {
           .post(`${BASE_URL}/auth`, payload)
           .then((response) => {
             emitter.emit('registerUserSuccess')
-            // setUserInfo(response)
+            setUserInfo(response)
             resolve(response);
           })
           .catch((error) => {
@@ -44,19 +44,19 @@ export const useSessionStore = defineStore('sessionManager', () => {
     });
   }
 
-  function  logoutUser() {
+  function logoutUser() {
+    console.log('auth_token.value', auth_token.value)
     const config = {
       headers: {
         authorization: auth_token.value,
       },
     };
-   return  new Promise((resolve, reject) => {
+     new Promise(() => {
       axios
-          .delete(`${BASE_URL}/users/sign_out`, config)
+          .delete(`${BASE_URL}/auth/sign_out`, config)
           .then(() => {
             emitter.emit('logOut')
             resetUserInfo()
-            resolve();
           })
           .catch((error) => {
             console.log('error', error)
@@ -64,15 +64,15 @@ export const useSessionStore = defineStore('sessionManager', () => {
     });
   }
 
-  function loginUserWithToken(payload) {
+  function loginUserWithToken() {
     const config = {
       headers: {
-        Authorization: payload.auth_token,
+        Authorization: auth_token.value,
       },
     };
     new Promise((resolve, reject) => {
       axios
-          .get(`${BASE_URL}/members`, config)
+          .get(`${BASE_URL}/`, config)
           .then((response) => {
             setUserInfoFromToken(response)
             resolve(response);
@@ -83,7 +83,8 @@ export const useSessionStore = defineStore('sessionManager', () => {
     });
   }
 
- function  setUserInfo(data) {
+ function setUserInfo(data) {
+   console.log('data', data)
     user.value = data.data.user;
     auth_token.value = data.headers.authorization;
     axios.defaults.headers.common["Authorization"] = data.headers.authorization;
@@ -94,7 +95,7 @@ export const useSessionStore = defineStore('sessionManager', () => {
     auth_token.value = localStorage.getItem("auth_token");
   }
  function resetUserInfo() {
-    user.value.vlaue = {
+    user.value = {
       id: null,
       username: null,
       email: null,

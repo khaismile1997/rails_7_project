@@ -11,6 +11,12 @@
     </div>
   </div>
 </template>
+<script setup>
+
+const props = defineProps(['brand'])
+
+</script>
+
 <style lang="scss" scoped>
 .brand{
   margin: 30px 60px;

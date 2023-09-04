@@ -52,6 +52,7 @@ const user = ref ({
    fullName: 'Windy Mai',
    email: 'windy_mai@gmail.com',
 })
+
 const loginUserWithToken = () => {
   let localAuthToken = localStorage.auth_token;
   let cookieExists = localAuthToken !== "undefined" && localAuthToken !== null;
@@ -70,6 +71,7 @@ onMounted(() => {
   emitter.on('loginSuccess', (res) => loginSuccess(res))
   emitter.on('loginFailed', () => loginFailed())
   emitter.on('logOut', () => logOut())
+  loginUserWithToken()
 })
 
 onUnmounted(() => {

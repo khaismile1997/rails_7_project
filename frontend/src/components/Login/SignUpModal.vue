@@ -28,10 +28,13 @@
           v-if="signUpInfo.user.password.length < 6 && signUpInfo.user.password.length"
           class="text-red"
         >Minimum 6 characters</span>
+        <div class="style-text password">
+          Confirm password
+        </div>
         <v-text-field
           v-model="signUpInfo.user.password_confirmation"
           type="password"
-          label="Password"
+          label="Confirm password"
         />
         <span
           v-if="signUpInfo.user.password!== signUpInfo.user.password_confirmation && signUpInfo.user.password.length && signUpInfo.user.password_confirmation.length "
