@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '@/views/HomePage.vue'
 import About from "@/views/About.vue";
-import Products from "@/views/ProductManagement.vue";
 import ClientManagement from "@/views/ClientManagement.vue";
 import BrandManagement from "@/views/BrandManagement.vue";
 import ProductManagement from "@/views/ProductManagement.vue";
