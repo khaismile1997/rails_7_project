@@ -12,15 +12,18 @@
           Email
         </div>
         <v-text-field
-          v-model="data.email"
+          v-model="loginInfo.user.email"
           label="Email"
+          placeholder="johndoe@gmail.com"
+          type="email"
         />
         <div class="style-text password">
           Password
         </div>
         <v-text-field
-          v-model="data.password"
+          v-model="loginInfo.user.password"
           label="Password"
+          type="password"
         />
         <div class="sign-up-btn">
           <v-btn
@@ -45,22 +48,31 @@
 <script setup>
 import CommonModal from "@/components/common/Modal/CommonModal.vue";
 import {reactive, ref} from "vue";
+import {useSessionStore} from "@/store/sessionManager";
+const store = useSessionStore()
 const modal = ref()
 const emits = defineEmits(['signUp'])
-const data = reactive({
-  password: '',
-  email: ''
+const loginInfo = reactive({
+  user:{
+    password: '',
+    email: ''
+  }
 })
+
 const show  = () => {
   modal.value.show()
 }
 
 const hide = () => {
+  loginInfo.user = {
+    password: '',
+    email: ''
+  }
   modal.value.hide()
 }
 
 const login = () => {
-  this.registerUser(data);
+  store.loginUser(loginInfo)
 }
 const signUp  = () => {
   emits('signUp')
@@ -68,7 +80,7 @@ const signUp  = () => {
 }
 
 defineExpose({
-  show
+  show, hide
 })
 
 

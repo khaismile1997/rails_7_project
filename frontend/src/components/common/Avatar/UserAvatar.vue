@@ -34,16 +34,11 @@
                 {{ user.email }}
               </p>
               <v-divider class="my-3" />
-              <v-btn
-                rounded
-                variant="text"
-              >
-                Edit Account
-              </v-btn>
               <v-divider class="my-3" />
               <v-btn
                 rounded
                 variant="text"
+                @click.prevent="logOut"
               >
                 Log out
               </v-btn>
@@ -54,12 +49,15 @@
     </v-row>
   </v-container>
 </template>
-<script setup>
-import {ref} from "vue";
+<script  setup>
+import {useSessionStore} from "@/store/sessionManager";
+import {onMounted} from "vue";
 
-const user = ref({
-  initials: 'WM',
-  fullName: 'Windy Mai',
-  email: 'windy_mai@gmail.com',
-})
+const props = defineProps(['user'])
+const store = useSessionStore()
+
+const logOut = () => {
+  store.logoutUser()
+}
+
 </script>

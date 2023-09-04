@@ -1,8 +1,10 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import store from "./store";
 import Router from "@/router";
+import { createPinia } from 'pinia'
 import mitt from "mitt";
+import VueBasicAlert from 'vue-basic-alert'
+const pinia = createPinia()
 const emitter = mitt()
 // Vuetify
 import 'vuetify/styles'
@@ -17,7 +19,8 @@ const vuetify = createVuetify({
 })
 const app = createApp(App)
 app.provide('emitter', emitter);
-app.use(store)
-    .use(Router)
+app.use(Router)
+    .use(pinia)
+    .use(VueBasicAlert)
     .use(vuetify)
     .mount('#app')
