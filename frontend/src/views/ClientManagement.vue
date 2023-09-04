@@ -174,7 +174,7 @@ const headers = ref([
 const desserts = ref([
   {
     email: 'phong96@gmail.com',
-    payout_rate: 'payout_rate'
+    payout_rate: '5.0'
   },
   {
     email: 'pkai96@gmail.com',
