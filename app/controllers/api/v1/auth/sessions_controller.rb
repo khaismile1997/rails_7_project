@@ -1,6 +1,13 @@
 class Api::V1::Auth::SessionsController < Devise::SessionsController
-  before_action :set_current_auth_resource
   respond_to :json
+
+  def new
+    if logged_in?
+      respond_with current_auth_resource
+      return
+    end
+    super
+  end
 
   private
 
@@ -15,7 +22,7 @@ class Api::V1::Auth::SessionsController < Devise::SessionsController
   end
 
   def respond_with(resource, _opts = {})
-    raise ApiError::Unauthorized unless @current_auth_resource
+    raise ApiError::Unauthorized unless current_user || current_client
     resource_hash = if resource.is_a?(User)
                       { user: current_user }
                     elsif resource.is_a?(Client)
@@ -26,7 +33,7 @@ class Api::V1::Auth::SessionsController < Devise::SessionsController
   end
 
   def respond_to_on_destroy
-    log_out_success && return if @current_auth_resource
+    log_out_success && return if current_user || current_client
 
     log_out_failed
   end
@@ -37,9 +44,5 @@ class Api::V1::Auth::SessionsController < Devise::SessionsController
 
   def log_out_failed
     render json: { message: "Something went wrong." }, status: :unauthorized
-  end
-
-  def set_current_auth_resource
-    @current_auth_resource = current_user || current_client
   end
 end
