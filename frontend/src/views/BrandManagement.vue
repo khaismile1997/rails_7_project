@@ -4,6 +4,9 @@
     :items="desserts"
     class="elevation-1"
   >
+    <template v-slot:item.name="{ item }">
+     <router-link to="/products">{{item.raw.name}}</router-link>
+    </template>
     <template #top>
       <v-toolbar
         flat
@@ -35,58 +38,58 @@
 
             <v-card-text>
               <v-container>
-                <v-row>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.name"
-                      label="Name"
-                    />
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.logo"
-                      label="Logo"
-                    />
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.website_url"
-                      label="Website Url"
-                    />
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.founded_year"
-                      label="Founded Year"
-                    />
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.primary_contact"
-                      label="Primary contact"
-                    />
-                  </v-col>
-                </v-row>
+                  <v-row class="row-item">
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="editedItem.name"
+                        label="Name"
+                      />
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="editedItem.logo"
+                        label="Logo"
+                      />
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="editedItem.website_url"
+                        label="Website Url"
+                      />
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="editedItem.founded_year"
+                        label="Founded Year"
+                      />
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="editedItem.primary_contact"
+                        label="Primary contact"
+                      />
+                    </v-col>
+                  </v-row>
               </v-container>
             </v-card-text>
 
@@ -166,9 +169,12 @@
 </template>
 <script setup>
 import {computed, onMounted, ref, watch} from "vue";
+import {useBrandStore} from "@/store/brands";
+
 import {
   VDataTable
 } from "vuetify/labs/VDataTable";
+    const store = useBrandStore()
     const dialog = ref (false)
     const dialogDelete = ref (false)
     const headers = ref([
@@ -242,7 +248,7 @@ watch(dialogDelete, (val) => {
   val || closeDelete()
 })
 
-const  editItem = (item) => {
+const editItem = (item) => {
       editedIndex.value = desserts.value.indexOf(item)
       editedItem.value = Object.assign({}, item)
       dialog.value = true
@@ -251,6 +257,7 @@ const deleteItem = (item) => {
       editedIndex.value = desserts.value.indexOf(item)
       editedItem.value = Object.assign({}, item)
       dialogDelete.value = true
+      store.deleteBrand(editedItem.value)
     }
 const deleteItemConfirm = ()  => {
       desserts.value.splice(editedIndex.value, 1)
@@ -268,8 +275,10 @@ const  closeDelete = () => {
 const  save = ()  => {
       if (editedIndex.value > -1) {
         Object.assign(desserts.value[editedIndex.value], editedItem.value)
+        store.updateBrandData(editedItem.value)
       } else {
         desserts.value.push(editedItem.value)
+        store.createBrandData(editedItem.value)
       }
       close()
     }

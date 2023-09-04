@@ -39,51 +39,41 @@
                   <v-col
                     cols="12"
                     sm="6"
-                    md="4"
+                    md="6"
                   >
                     <v-text-field
-                      v-model="editedItem"
-                      label="Name"
+                      v-model="editedItem.password"
+                      label="Password"
                     />
                   </v-col>
                   <v-col
                     cols="12"
                     sm="6"
-                    md="4"
+                    md="6"
                   >
                     <v-text-field
-                      v-model="editedItem.logo"
-                      label="Logo"
+                      v-model="editedItem.password_confirmation"
+                      label="Password confirmation"
                     />
                   </v-col>
                   <v-col
                     cols="12"
                     sm="6"
-                    md="4"
+                    md="6"
                   >
                     <v-text-field
-                      v-model="editedItem.website_url"
-                      label="Website Url"
+                      v-model="editedItem.payout_rate"
+                      label="Payout rate"
                     />
                   </v-col>
                   <v-col
                     cols="12"
                     sm="6"
-                    md="4"
+                    md="6"
                   >
                     <v-text-field
-                      v-model="editedItem.founded_year"
-                      label="Founded Year"
-                    />
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.primary_contact"
-                      label="Primary contact"
+                      v-model="editedItem.email"
+                      label="email"
                     />
                   </v-col>
                 </v-row>
@@ -166,20 +156,18 @@
 </template>
 <script setup>
 import {computed, onMounted, ref, watch} from "vue";
+import {useClientStore} from "@/store/client";
 import {
   VDataTable
 } from "vuetify/labs/VDataTable";
 const dialog = ref (false)
 const dialogDelete = ref (false)
+const store = useClientStore()
 const headers = ref([
-  {
-    title: 'Email',
-    align: 'start',
-    key: 'email',
-    sortable: false
-  },
   { title: 'Payout rate', key: 'payout_rate', sortable: false  },
+  { title: 'email', key: 'email', sortable: false },
   { title: 'Actions', key: 'actions', sortable: false },
+
 
 ])
 
@@ -199,12 +187,16 @@ const desserts = ref([
 ])
 const editedIndex = ref(-1)
 const editedItem = ref ({
-  email: '',
-  payout_rate: '',
+  password: '',
+  password_confirmation: '',
+  payout_rate: 0,
+  email: ''
 })
 const defaultItem = ref({
-  name: '',
-  payout_rate: '',
+  password: '',
+  password_confirmation: '',
+  payout_rate: 0,
+  email: ''
 })
 
 const formTitle = computed(() => {
@@ -228,6 +220,7 @@ const deleteItem = (item) => {
   editedIndex.value = desserts.value.indexOf(item)
   editedItem.value = Object.assign({}, item)
   dialogDelete.value = true
+  store.deleteClient(editedItem.value)
 }
 const deleteItemConfirm = ()  => {
   desserts.value.splice(editedIndex.value, 1)
@@ -245,8 +238,10 @@ const  closeDelete = () => {
 const  save = ()  => {
   if (editedIndex.value > -1) {
     Object.assign(desserts.value[editedIndex.value], editedItem.value)
+    store.updateClientData(editedItem.value)
   } else {
     desserts.value.push(editedItem.value)
+    store.createClientData(editedIndex.value)
   }
   close()
 }

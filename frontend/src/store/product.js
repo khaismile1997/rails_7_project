@@ -3,16 +3,16 @@ import {defineStore} from "pinia";
 import {computed, ref} from "vue";
 const BASE_URL = "http://localhost:3001/api/v1";
 
-export const useBrandStore = defineStore('brandStore',() => {
-  const brands = ref([])
+export const useProductStore = defineStore('productStore',() => {
+  const products = ref([])
 
-  const getBrands = computed(() => {
-    return brands.value
+  const getProducts = computed(() => {
+    return products.value
   })
 
-  const fetchingBrandData =  async () => {
+  const fetchingProductData =  async () => {
     return new Promise((resolve) => {
-      axios.get(`${BASE_URL}/brands`)
+      axios.get(`${BASE_URL}/products`)
           .then((res) => {
             console.log('res', res)
             resolve(res)
@@ -22,9 +22,9 @@ export const useBrandStore = defineStore('brandStore',() => {
           })
     })
   }
-  const createBrandData =  async (payload) => {
+  const createProductData =  async (payload) => {
     return new Promise((resolve) => {
-      axios.post(`${BASE_URL}/brands`, payload)
+      axios.post(`${BASE_URL}/products`, payload)
           .then((res) => {
             console.log('res', res)
             resolve(res)
@@ -34,9 +34,9 @@ export const useBrandStore = defineStore('brandStore',() => {
           })
     })
   }
-  const updateBrandData =  async (payload) => {
+  const updateProductData =  async (payload) => {
     return new Promise((resolve) => {
-      axios.put(`${BASE_URL}/brands/${payload.id}`, payload)
+      axios.put(`${BASE_URL}/products/${payload.id}`, payload)
           .then((res) => {
             console.log('res', res)
             resolve(res)
@@ -47,9 +47,9 @@ export const useBrandStore = defineStore('brandStore',() => {
     })
   }
 
-  const deleteBrand =  async (payload) => {
+  const deleteProduct =  async (payload) => {
     return new Promise((resolve) => {
-      axios.delete(`${BASE_URL}/clients/${payload.id}`)
+      axios.delete(`${BASE_URL}/products/${payload.id}`)
           .then((res) => {
             console.log('res', res)
             resolve(res)
@@ -61,10 +61,10 @@ export const useBrandStore = defineStore('brandStore',() => {
   }
 
   return {
-    getBrands,
-    fetchingBrandData,
-    createBrandData,
-    updateBrandData,
-    deleteBrand
+    getProducts,
+    fetchingProductData,
+    createProductData,
+    updateProductData,
+    deleteProduct
   }
 })

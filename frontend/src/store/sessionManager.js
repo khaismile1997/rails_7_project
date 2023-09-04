@@ -45,7 +45,6 @@ export const useSessionStore = defineStore('sessionManager', () => {
   }
 
   function logoutUser() {
-    console.log('auth_token.value', auth_token.value)
     const config = {
       headers: {
         authorization: auth_token.value,
@@ -55,8 +54,8 @@ export const useSessionStore = defineStore('sessionManager', () => {
       axios
           .delete(`${BASE_URL}/auth/sign_out`, config)
           .then(() => {
-            emitter.emit('logOut')
             resetUserInfo()
+            emitter.emit('logOut')
           })
           .catch((error) => {
             console.log('error', error)

@@ -3,16 +3,16 @@ import {defineStore} from "pinia";
 import {computed, ref} from "vue";
 const BASE_URL = "http://localhost:3001/api/v1";
 
-export const useBrandStore = defineStore('brandStore',() => {
-  const brands = ref([])
+export const useClientStore = defineStore('clientStore',() => {
+  const clients = ref([])
 
-  const getBrands = computed(() => {
-    return brands.value
+  const getClients = computed(() => {
+    return clients.value
   })
 
-  const fetchingBrandData =  async () => {
+  const fetchingClientData =  async () => {
     return new Promise((resolve) => {
-      axios.get(`${BASE_URL}/brands`)
+      axios.get(`${BASE_URL}/clients`)
           .then((res) => {
             console.log('res', res)
             resolve(res)
@@ -22,9 +22,9 @@ export const useBrandStore = defineStore('brandStore',() => {
           })
     })
   }
-  const createBrandData =  async (payload) => {
+  const createClientData =  async (payload) => {
     return new Promise((resolve) => {
-      axios.post(`${BASE_URL}/brands`, payload)
+      axios.post(`${BASE_URL}/clients`, payload)
           .then((res) => {
             console.log('res', res)
             resolve(res)
@@ -34,9 +34,9 @@ export const useBrandStore = defineStore('brandStore',() => {
           })
     })
   }
-  const updateBrandData =  async (payload) => {
+  const updateClientData =  async (payload) => {
     return new Promise((resolve) => {
-      axios.put(`${BASE_URL}/brands/${payload.id}`, payload)
+      axios.put(`${BASE_URL}/clients/${payload.id}`, payload)
           .then((res) => {
             console.log('res', res)
             resolve(res)
@@ -47,7 +47,7 @@ export const useBrandStore = defineStore('brandStore',() => {
     })
   }
 
-  const deleteBrand =  async (payload) => {
+  const deleteClient =  async (payload) => {
     return new Promise((resolve) => {
       axios.delete(`${BASE_URL}/clients/${payload.id}`)
           .then((res) => {
@@ -61,10 +61,10 @@ export const useBrandStore = defineStore('brandStore',() => {
   }
 
   return {
-    getBrands,
-    fetchingBrandData,
-    createBrandData,
-    updateBrandData,
-    deleteBrand
+    getClients,
+    fetchingClientData,
+    createClientData,
+    updateClientData,
+    deleteClient
   }
 })

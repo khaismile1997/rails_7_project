@@ -72,14 +72,6 @@ const hideSideBar = () => {
   isShow.value = false
 }
 
-// const getBrand = async () => {
-//   const res = await fetch('http://localhost:3001/api/v1/brands')
-//   if(!res.ok){
-//     console.log('error!!')
-//   }
-//   console.log(res)
-// }
-
 onMounted(() => {
   // getBrand()
 })

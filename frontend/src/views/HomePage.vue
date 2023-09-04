@@ -8,14 +8,10 @@
 </template>
 <script setup>
 import Brand from "@/components/Brand/Brand.vue";
+import {ref} from "vue";
 import {useBrandsStore} from "@/store/brands";
-import {onMounted, ref} from "vue";
-const store = useBrandsStore()
-const brands = ref(store.getBrands)
-
-onMounted(() => {
-  store.fetchingBrandsData()
-})
+const brandsStore = useBrandsStore()
+const brands = ref(brandsStore.getBrands)
 
 </script>
 <style scoped>

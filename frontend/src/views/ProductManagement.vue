@@ -166,11 +166,13 @@
 </template>
 <script setup>
 import {computed, onMounted, ref, watch} from "vue";
+import {useProductStore} from "@/store/product";
 import {
   VDataTable
 } from "vuetify/labs/VDataTable";
 const dialog = ref (false)
 const dialogDelete = ref (false)
+const store = useProductStore()
 const headers = ref([
   {
     title: 'Name',
@@ -251,6 +253,7 @@ const deleteItem = (item) => {
   editedIndex.value = desserts.value.indexOf(item)
   editedItem.value = Object.assign({}, item)
   dialogDelete.value = true
+  store.deleteProduct(editedItem.value)
 }
 const deleteItemConfirm = ()  => {
   desserts.value.splice(editedIndex.value, 1)
@@ -268,8 +271,10 @@ const  closeDelete = () => {
 const  save = ()  => {
   if (editedIndex.value > -1) {
     Object.assign(desserts.value[editedIndex.value], editedItem.value)
+    store.updateProductData(editedItem.value)
   } else {
     desserts.value.push(editedItem.value)
+    store.createProductData(editedItem.value)
   }
   close()
 }

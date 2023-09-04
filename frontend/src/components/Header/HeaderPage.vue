@@ -53,6 +53,7 @@ const user = ref ({
    email: 'windy_mai@gmail.com',
 })
 
+
 const loginUserWithToken = () => {
   let localAuthToken = localStorage.auth_token;
   let cookieExists = localAuthToken !== "undefined" && localAuthToken !== null;
