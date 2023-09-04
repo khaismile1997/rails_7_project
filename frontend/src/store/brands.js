@@ -49,7 +49,7 @@ export const useBrandStore = defineStore('brandStore',() => {
 
   const deleteBrand =  async (payload) => {
     return new Promise((resolve) => {
-      axios.delete(`${BASE_URL}/clients/${payload.id}`)
+      axios.delete(`${BASE_URL}/brands/${payload.id}`)
           .then((res) => {
             console.log('res', res)
             resolve(res)
