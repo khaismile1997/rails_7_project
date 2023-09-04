@@ -4,8 +4,10 @@
     :items="desserts"
     class="elevation-1"
   >
-    <template v-slot:item.name="{ item }">
-     <router-link to="/products">{{item.raw.name}}</router-link>
+    <template #item.name="{ item }">
+      <router-link to="/products">
+        {{ item.raw.name }}
+      </router-link>
     </template>
     <template #top>
       <v-toolbar
@@ -38,58 +40,58 @@
 
             <v-card-text>
               <v-container>
-                  <v-row class="row-item">
-                    <v-col
-                      cols="12"
-                      sm="6"
-                      md="4"
-                    >
-                      <v-text-field
-                        v-model="editedItem.name"
-                        label="Name"
-                      />
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      sm="6"
-                      md="4"
-                    >
-                      <v-text-field
-                        v-model="editedItem.logo"
-                        label="Logo"
-                      />
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      sm="6"
-                      md="4"
-                    >
-                      <v-text-field
-                        v-model="editedItem.website_url"
-                        label="Website Url"
-                      />
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      sm="6"
-                      md="4"
-                    >
-                      <v-text-field
-                        v-model="editedItem.founded_year"
-                        label="Founded Year"
-                      />
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      sm="6"
-                      md="4"
-                    >
-                      <v-text-field
-                        v-model="editedItem.primary_contact"
-                        label="Primary contact"
-                      />
-                    </v-col>
-                  </v-row>
+                <v-row class="row-item">
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.name"
+                      label="Name"
+                    />
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.logo"
+                      label="Logo"
+                    />
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.website_url"
+                      label="Website Url"
+                    />
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.founded_year"
+                      label="Founded Year"
+                    />
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.primary_contact"
+                      label="Primary contact"
+                    />
+                  </v-col>
+                </v-row>
               </v-container>
             </v-card-text>
 

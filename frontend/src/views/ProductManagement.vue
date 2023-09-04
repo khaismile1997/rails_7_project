@@ -52,7 +52,7 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.logo"
+                      v-model="editedItem.care_instructions"
                       label="Logo"
                     />
                   </v-col>
@@ -62,7 +62,7 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.website_url"
+                      v-model="editedItem.color_options"
                       label="Website Url"
                     />
                   </v-col>
@@ -72,7 +72,7 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.founded_year"
+                      v-model="editedItem.material"
                       label="Founded Year"
                     />
                   </v-col>
@@ -82,7 +82,7 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.primary_contact"
+                      v-model="editedItem.size_options"
                       label="Primary contact"
                     />
                   </v-col>
@@ -180,56 +180,56 @@ const headers = ref([
     key: 'name',
     sortable: false
   },
-  { title: 'Logo', key: 'logo', sortable: false  },
-  { title: 'Website Url', key: 'website_url' ,  sortable: false},
-  { title: 'Founded Year', key: 'founded_year', sortable: false },
-  { title: 'Primary Contact', key: 'primary_contact' ,  sortable: false},
+  { title: 'material', key: 'material', sortable: false  },
+  { title: 'size options', key: 'size_options' ,  sortable: false},
+  { title: 'color options', key: 'color_options', sortable: false },
+  { title: 'care instructions', key: 'care_instructions' ,  sortable: false},
   { title: 'Actions', key: 'actions', sortable: false },
 ])
 const desserts =   ref([
   {
-    name: 'Bradtke1 Inc',
-    logo: 'https://loremflickr.com/50/50',
-    website_url: 'http://ward.example/rozella.hane',
-    founded_year: 1955,
-    primary_contact: 'Sanora Berge',
+    name: 'Product1',
+    material: 'Bronze',
+    size_options: 'odio, dolores, tempore',
+    color_options: 'silver',
+    care_instructions: 'Saepe consequatur eum aut.',
   },
   {
-    name: 'Bradtke2 Inc',
-    logo: 'https://loremflickr.com/50/50',
-    website_url: 'http://ward.example/rozella.hane',
-    founded_year: 1955,
-    primary_contact: 'Sanora Berge',
+    name: 'Product2',
+    material: 'Bronze',
+    size_options: 'odio, dolores, tempore',
+    color_options: 'silver',
+    care_instructions: 'Saepe consequatur eum aut.',
   },
   {
-    name: 'Bradtke3 Inc',
-    logo: 'https://loremflickr.com/50/50',
-    website_url: 'http://ward.example/rozella.hane',
-    founded_year: 1955,
-    primary_contact: 'Sanora Berge',
+    name: 'Product3',
+    material: 'Bronze',
+    size_options: 'odio, dolores, tempore',
+    color_options: 'silver',
+    care_instructions: 'Saepe consequatur eum aut.',
   },
   {
-    name: 'Bradtke4 Inc',
-    logo: 'https://loremflickr.com/50/50',
-    website_url: 'http://ward.example/rozella.hane',
-    founded_year: 1955,
-    primary_contact: 'Sanora Berge',
+    name: 'Product4',
+    material: 'Bronze',
+    size_options: 'odio, dolores, tempore',
+    color_options: 'silver',
+    care_instructions: 'Saepe consequatur eum aut.',
   }
 ])
 const editedIndex = ref(-1)
 const editedItem = ref ({
   name: '',
-  logo: '',
-  website_url: '',
-  founded_year: 0,
-  primary_contact: ''
+  material: '',
+  size_options: '',
+  color_options: '',
+  care_instructions: '',
 })
 const defaultItem = ref({
   name: '',
-  logo: '',
-  website_url: '',
-  founded_year: 0,
-  primary_contact: ''
+  material: '',
+  size_options: '',
+  color_options: '',
+  care_instructions: ''
 })
 
 const formTitle = computed(() => {
