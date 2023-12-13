@@ -23,4 +23,6 @@ Things you may want to cover:
 
 * Commit 1
 
+* Commit 3
+
 * ...
