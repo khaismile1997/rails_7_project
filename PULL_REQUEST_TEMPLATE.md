@@ -1,3 +1,5 @@
+# Highlight
+
 #### What's this PR do?
 
 #### Why is it needed?
@@ -8,11 +10,11 @@
 
 #### Any background context you want to provide?
 
-#### What are the relevant tickets?
+#### What are the relevant issue?
 
 #### Screenshots (if appropriate)
 
-# PR Checklist
+# Checklist
 
 ## Code Commit
 - [ ] Is the branch named according to the rules?
